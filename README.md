@@ -1,3 +1,23 @@
 # TODONOW-
-my task   我的任务
-快写啊
+
+# TodoNow
+
+Manage the information in your life
+
+## Features
+- 待办事项管理
+- 分类
+- 优先级
+- 截止日期
+- 提醒
+- 课程管理
+- 作业管理
+- 考试管理
+- 小组协作
+- 日程安排
+- 笔记管理
+- 成绩管理
+- 资源分享
+
+## Getting Started
+- 写代码
