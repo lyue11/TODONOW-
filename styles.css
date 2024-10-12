@@ -18,8 +18,8 @@ body {
     margin-bottom: 20px;
 }
 
-input[type="text"], input[type="datetime-local"], select {
-    width: 30%;
+input[type="text"], input[type="datetime-local"], select, input[type="checkbox"] {
+    width: 20%;
     padding: 10px;
     margin-right: 10px;
     border: 1px solid #ccc;
@@ -66,4 +66,8 @@ li.low-priority {
 
 li span {
     margin-left: 10px;
+}
+
+label {
+    margin-right: 10px;
 }
