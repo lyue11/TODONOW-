@@ -18,8 +18,16 @@ body {
     margin-bottom: 20px;
 }
 
-input[type="text"], input[type="datetime-local"], select, input[type="checkbox"] {
+input[type="text"], input[type="datetime-local"], select, textarea, input[type="checkbox"] {
     width: 20%;
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+textarea {
+    width: 45%;
     padding: 10px;
     margin-right: 10px;
     border: 1px solid #ccc;
