@@ -3,88 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TodoNow</title>
+    <title>待办事项列表</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#todos">Todos</a></li>
-                <li><a href="#courses">Courses</a></li>
-                <li><a href="#assignments">Assignments</a></li>
-                <li><a href="#exams">Exams</a></li>
-                <li><a href="#collaborations">Collaborations</a></li>
-                <li><a href="#schedule">Schedule</a></li>
-                <li><a href="#notes">Notes</a></li>
-                <li><a href="#grades">Grades</a></li>
-                <li><a href="#resources">Resources</a></li>
-            </ul>
-        </nav>
-    </header>
+    <div class="container">
+        <h1>待办事项列表</h1>
+        <input type="text" id="newItemInput" placeholder="输入新任务">
+        <button onclick="addItem()">添加任务</button>
+        <ul id="todoList"></ul>
+    </div>
 
-    <main>
-        <section id="todos">
-            <h2>Todos</h2>
-            <input type="text" id="todoInput" placeholder="Add a todo">
-            <button id="addTodoButton">Add</button>
-            <ul id="todoList"></ul>
-        </section>
-
-        <section id="courses">
-            <h2>Courses</h2>
-            <ul id="courseList"></ul>
-            <button id="addCourseButton">Add Course</button>
-        </section>
-        <section id="courses">
-            <h2>Courses</h2>
-            <input type="text" id="courseInput" placeholder="Add a course">
-            <button id="addCourseButton">Add</button>
-            <ul id="courseList"></ul>
-        </section>
-
-        <section id="assignments">
-            <h2>Assignments</h2>
-            <ul id="assignmentList"></ul>
-            <button id="addAssignmentButton">Add Assignment</button>
-        </section>
-
-        <section id="exams">
-            <h2>Exams</h2>
-            <ul id="examList"></ul>
-            <button id="addExamButton">Add Exam</button>
-        </section>
-
-        <section id="collaborations">
-            <h2>Collaborations</h2>
-            <ul id="collaborationList"></ul>
-            <button id="addCollaborationButton">Add Collaboration</button>
-        </section>
-
-        <section id="schedule">
-            <h2>Schedule</h2>
-            <ul id="scheduleList"></ul>
-            <button id="addScheduleButton">Add Schedule</button>
-        </section>
-
-        <section id="notes">
-            <h2>Notes</h2>
-            <ul id="noteList"></ul>
-            <button id="addNoteButton">Add Note</button>
-        </section>
-
-        <section id="grades">
-            <h2>Grades</h2>
-            <ul id="gradeList"></ul>
-            <button id="addGradeButton">Add Grade</button>
-        </section>
-
-        <section id="resources">
-            <h2>Resources</h2>
-            <ul id="resourceList"></ul>
-            <button id="addResourceButton">Add Resource</button>
-        </section>
-    </main>
+    <script src="script.js"></script>
 </body>
 </html>
