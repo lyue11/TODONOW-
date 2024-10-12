@@ -1,8 +1,8 @@
-# TODONOW-
+# TODONOW-   # TODONOW——   TODONOW——
 
 # TodoNow
 
-Manage the information in your life
+Manage the information in your life管理你生活中的信息
 
 ## Features
 - 待办事项管理
@@ -21,3 +21,9 @@ Manage the information in your life
 
 ## Getting Started
 - 写代码
+
+- todo-list-app/
+│
+├── index.html
+├── styles.css
+└── script.js
