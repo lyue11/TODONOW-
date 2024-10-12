@@ -18,3 +18,16 @@ function addItem() {
     input.value = '';
     timeInput.value = '';
 }
+
+function updateTime() {
+    const currentTimeDiv = document.getElementById('currentTime');
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString();
+    currentTimeDiv.textContent = `当前时间: ${timeStr}`;
+}
+
+// 初始化时间显示
+updateTime();
+
+// 每秒更新一次时间
+setInterval(updateTime, 1000);
