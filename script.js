@@ -1,4 +1,6 @@
 const todoList = document.getElementById('todoList');
+const themeColorSelect = document.getElementById('themeColorSelect');
+const fontSizeSelect = document.getElementById('fontSizeSelect');
 
 function addItem() {
     const input = document.getElementById('newItemInput');
@@ -100,15 +102,39 @@ function createNotification(message, reminderTime) {
     };
 }
 
-function updateTime() {
-    const currentTimeDiv = document.getElementById('currentTime');
-    const now = new Date();
-    const timeStr = now.toLocaleTimeString();
-    currentTimeDiv.textContent = `当前时间: ${timeStr}`;
+// 个性化设置
+themeColorSelect.addEventListener('change', function() {
+    const selectedColor = this.value;
+    document.body.style.backgroundColor = getBackgroundColor(selectedColor);
+});
+
+fontSizeSelect.addEventListener('change', function() {
+    const selectedSize = this.value;
+    document.body.style.fontSize = getFontSize(selectedSize);
+});
+
+function getBackgroundColor(color) {
+    switch (color) {
+        case 'blue':
+            return '#e6f7ff';
+        case 'green':
+            return '#e6ffe6';
+        case 'purple':
+            return '#f5e6ff';
+        default:
+            return '#f4f4f9';
+    }
 }
 
-// 初始化时间显示
-updateTime();
-
-// 每秒更新一次时间
-setInterval(updateTime, 1000);
+function getFontSize(size) {
+    switch (size) {
+        case 'small':
+            return '12px';
+        case 'medium':
+            return '16px';
+        case 'large':
+            return '20px';
+        default:
+            return '16px';
+    }
+}
