@@ -18,8 +18,8 @@ body {
     margin-bottom: 20px;
 }
 
-input[type="text"], input[type="datetime-local"] {
-    width: 45%;
+input[type="text"], input[type="datetime-local"], select {
+    width: 30%;
     padding: 10px;
     margin-right: 10px;
     border: 1px solid #ccc;
@@ -47,11 +47,21 @@ ul {
 li {
     padding: 10px;
     margin-bottom: 5px;
-    background-color: #e9ecef;
-    border-radius: 5px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+li.high-priority {
+    background-color: #ffcccc; /* 高优先级背景色 */
+}
+
+li.medium-priority {
+    background-color: #ffffcc; /* 中优先级背景色 */
+}
+
+li.low-priority {
+    background-color: #ccffcc; /* 低优先级背景色 */
 }
 
 li span {

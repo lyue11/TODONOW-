@@ -1,8 +1,10 @@
 function addItem() {
     const input = document.getElementById('newItemInput');
     const timeInput = document.getElementById('newItemTime');
+    const prioritySelect = document.getElementById('prioritySelect');
     const value = input.value.trim();
     const timeValue = timeInput.value;
+    const priority = prioritySelect.value;
 
     if (value === '') return;
 
@@ -13,10 +15,14 @@ function addItem() {
     timeSpan.textContent = timeValue;
     li.appendChild(timeSpan);
 
+    // 设置优先级样式
+    li.classList.add(`${priority}-priority`);
+
     ul.appendChild(li);
 
     input.value = '';
     timeInput.value = '';
+    prioritySelect.selectedIndex = 0; // 重置优先级选择
 }
 
 function updateTime() {
