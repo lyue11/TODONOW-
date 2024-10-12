@@ -12,6 +12,12 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+#currentTime {
+    font-size: 24px;
+    color: #007BFF;
+    margin-bottom: 20px;
+}
+
 input[type="text"], input[type="datetime-local"] {
     width: 45%;
     padding: 10px;
