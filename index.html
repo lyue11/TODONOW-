@@ -24,6 +24,24 @@
         <input type="text" id="linkInput" placeholder="相关链接">
         <button onclick="addItem()">添加任务</button>
         <ul id="todoList"></ul>
+        
+        <!-- 新增个性化设置 -->
+        <div class="personalization-settings">
+            <h2>个性化设置</h2>
+            <label for="themeColorSelect">主题颜色:</label>
+            <select id="themeColorSelect">
+                <option value="blue">蓝色</option>
+                <option value="green">绿色</option>
+                <option value="purple">紫色</option>
+            </select>
+            
+            <label for="fontSizeSelect">字体大小:</label>
+            <select id="fontSizeSelect">
+                <option value="small">小</option>
+                <option value="medium">中</option>
+                <option value="large">大</option>
+            </select>
+        </div>
     </div>
 
     <script src="script.js"></script>
