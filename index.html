@@ -12,6 +12,11 @@
         <div id="currentTime">当前时间将会在这里显示</div>
         <input type="text" id="newItemInput" placeholder="输入新任务">
         <input type="datetime-local" id="newItemTime" placeholder="截止时间">
+        <select id="prioritySelect">
+            <option value="low">低</option>
+            <option value="medium">中</option>
+            <option value="high">高</option>
+        </select>
         <button onclick="addItem()">添加任务</button>
         <ul id="todoList"></ul>
     </div>
