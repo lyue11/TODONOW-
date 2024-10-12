@@ -79,3 +79,16 @@ li span {
 label {
     margin-right: 10px;
 }
+
+.personalization-settings {
+    margin-top: 20px;
+}
+
+.personalization-settings h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.personalization-settings label {
+    margin-right: 10px;
+}
