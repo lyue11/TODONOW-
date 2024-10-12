@@ -1,6 +1,16 @@
 const todoList = document.getElementById('todoList');
+const currentTimeDiv = document.getElementById('currentTime');
 const themeColorSelect = document.getElementById('themeColorSelect');
 const fontSizeSelect = document.getElementById('fontSizeSelect');
+
+// 显示当前时间
+function updateCurrentTime() {
+    const now = new Date();
+    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+    currentTimeDiv.textContent = `当前时间: ${now.toLocaleString('zh-CN', options)}`;
+}
+
+setInterval(updateCurrentTime, 1000); // 每秒更新一次时间
 
 function addItem() {
     const input = document.getElementById('newItemInput');
