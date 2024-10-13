@@ -16,47 +16,69 @@ setInterval(updateCurrentTime, 1000); // 每秒更新一次时间
 function loadTodos() {
     const todos = JSON.parse(localStorage.getItem('todos')) || [];
     todos.forEach(todo => {
-        const li = document.createElement('li');
-        li.textContent = todo.text;
-        const timeSpan = document.createElement('span');
-        timeSpan.textContent = todo.time;
-        li.appendChild(timeSpan);
-
-        // 设置优先级样式
-        li.classList.add(`${todo.priority}-priority`);
-
-        // 添加备注、附件和链接
-        const detailsContainer = document.createElement('div');
-        detailsContainer.classList.add('details-container');
-
-        const notesElement = document.createElement('p');
-        notesElement.textContent = `备注: ${todo.notes}`;
-        detailsContainer.appendChild(notesElement);
-
-        const attachmentElement = document.createElement('p');
-        attachmentElement.textContent = `附件: <a href="${todo.attachment}" target="_blank">${todo.attachment}</a>`;
-        detailsContainer.appendChild(attachmentElement);
-
-        const linkElement = document.createElement('p');
-        linkElement.textContent = `链接: <a href="${todo.link}" target="_blank">${todo.link}</a>`;
-        detailsContainer.appendChild(linkElement);
-
-        li.appendChild(detailsContainer);
-
-        // 添加提醒功能
-        const reminderTime = new Date(todo.time);
-        const now = new Date();
-        if (reminderTime > now) {
-            setReminder(reminderTime, li, todo.isRepeating);
-        }
-
-        todoList.appendChild(li);
+        addTodoToList(todo);
     });
 }
 
 loadTodos();
 
-function addItem() {
+function addTodoToList(todo) {
+    const li = document.createElement('li');
+    li.textContent = todo.text;
+    const timeSpan = document.createElement('span');
+    timeSpan.textContent = todo.time;
+    li.appendChild(timeSpan);
+
+    // 设置优先级样式
+    li.classList.add(`${todo.priority}-priority`);
+
+    // 添加备注、附件和链接
+    const detailsContainer = document.createElement('div');
+    detailsContainer.classList.add('details-container');
+
+    const notesElement = document.createElement('p');
+    notesElement.textContent = `备注: ${todo.notes}`;
+    detailsContainer.appendChild(notesElement);
+
+    const attachmentElement = document.createElement('p');
+    attachmentElement.textContent = `附件: <a href="${todo.attachment}" target="_blank">${todo.attachment}</a>`;
+    detailsContainer.appendChild(attachmentElement);
+
+    const linkElement = document.createElement('p');
+    linkElement.textContent = `链接: <a href="${todo.link}" target="_blank">${todo.link}</a>`;
+    detailsContainer.appendChild(linkElement);
+
+    li.appendChild(detailsContainer);
+
+    // 添加删除按钮
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = '删除';
+    deleteButton.addEventListener('click', () => {
+        todoList.removeChild(li);
+        removeTodoFromStorage(todo);
+    });
+    li.appendChild(deleteButton);
+
+    // 添加编辑按钮
+    const editButton = document.createElement('button');
+    editButton.textContent = '编辑';
+    editButton.addEventListener('click', () => {
+        editTodo(li, todo);
+    });
+    li.appendChild(editButton);
+
+    // 添加提醒功能
+    const reminderTime = new Date(todo.time);
+    const now = new Date();
+    if (reminderTime > now) {
+        setReminder(reminderTime, li, todo.isRepeating);
+    }
+
+    todoList.appendChild(li);
+}
+
+function addItem(event) {
+    event.preventDefault();
     const input = document.getElementById('newItemInput');
     const timeInput = document.getElementById('newItemTime');
     const prioritySelect = document.getElementById('prioritySelect');
@@ -74,44 +96,20 @@ function addItem() {
 
     if (value === '') return;
 
-    const li = document.createElement('li');
-    li.textContent = value;
-    const timeSpan = document.createElement('span');
-    timeSpan.textContent = timeValue;
-    li.appendChild(timeSpan);
+    const todo = {
+        text: value,
+        time: timeValue,
+        priority,
+        isRepeating,
+        notes,
+        attachment,
+        link
+    };
 
-    // 设置优先级样式
-    li.classList.add(`${priority}-priority`);
-
-    // 添加备注、附件和链接
-    const detailsContainer = document.createElement('div');
-    detailsContainer.classList.add('details-container');
-
-    const notesElement = document.createElement('p');
-    notesElement.textContent = `备注: ${notes}`;
-    detailsContainer.appendChild(notesElement);
-
-    const attachmentElement = document.createElement('p');
-    attachmentElement.textContent = `附件: <a href="${attachment}" target="_blank">${attachment}</a>`;
-    detailsContainer.appendChild(attachmentElement);
-
-    const linkElement = document.createElement('p');
-    linkElement.textContent = `链接: <a href="${link}" target="_blank">${link}</a>`;
-    detailsContainer.appendChild(linkElement);
-
-    li.appendChild(detailsContainer);
-
-    // 添加提醒功能
-    const reminderTime = new Date(timeValue);
-    const now = new Date();
-    if (reminderTime > now) {
-        setReminder(reminderTime, li, isRepeating);
-    }
-
-    todoList.appendChild(li);
+    addTodoToList(todo);
 
     // 保存到 localStorage
-    saveTodo({ text: value, time: timeValue, priority, isRepeating, notes, attachment, link });
+    saveTodo(todo);
 
     input.value = '';
     timeInput.value = '';
@@ -122,82 +120,83 @@ function addItem() {
     linkInput.value = '';
 }
 
+document.getElementById('addItemForm').addEventListener('submit', addItem);
+
 function saveTodo(todo) {
     let todos = JSON.parse(localStorage.getItem('todos')) || [];
     todos.push(todo);
     localStorage.setItem('todos', JSON.stringify(todos));
 }
 
+function removeTodoFromStorage(todo) {
+    let todos = JSON.parse(localStorage.getItem('todos')) || [];
+    todos = todos.filter(t => t.text !== todo.text);
+    localStorage.setItem('todos', JSON.stringify(todos));
+}
+
 function setReminder(reminderTime, li, isRepeating) {
     const timeDifference = reminderTime.getTime() - new Date().getTime();
+    if (timeDifference <= 0) return;
+
     setTimeout(() => {
         showNotification(li.textContent, reminderTime);
         if (isRepeating) {
-            setReminder(reminderTime, li, true); // 重复提醒
+            const nextReminderTime = getNextReminderTime(reminderTime);
+            setReminder(nextReminderTime, li, isRepeating);
         }
     }, timeDifference);
 }
 
-function showNotification(message, reminderTime) {
-    if (!('Notification' in window)) {
-        console.log('此浏览器不支持桌面通知');
-        return;
-    }
-
-    if (Notification.permission !== 'granted') {
-        Notification.requestPermission().then(permission => {
-            if (permission === 'granted') {
-                createNotification(message, reminderTime);
-            }
-        });
-    } else {
-        createNotification(message, reminderTime);
-    }
+function getNextReminderTime(currentTime) {
+    const nextTime = new Date(currentTime);
+    nextTime.setDate(nextTime.getDate() + 7); // 假设每周重复
+    return nextTime;
 }
 
-function createNotification(message, reminderTime) {
-    const notification = new Notification('提醒', {
-        body: `${message} - 截止时间: ${reminderTime.toLocaleString()}`
+function showNotification(message, time) {
+    alert(`提醒: ${message} 在 ${time.toLocaleString('zh-CN')}`);
+}
+
+function editTodo(li, todo) {
+    const input = document.getElementById('newItemInput');
+    const timeInput = document.getElementById('newItemTime');
+    const prioritySelect = document.getElementById('prioritySelect');
+    const repeatCheckbox = document.getElementById('repeatCheckbox');
+    const notesInput = document.getElementById('notesInput');
+    const attachmentInput = document.getElementById('attachmentInput');
+    const linkInput = document.getElementById('linkInput');
+
+    input.value = todo.text;
+    timeInput.value = todo.time;
+    prioritySelect.value = todo.priority;
+    repeatCheckbox.checked = todo.isRepeating;
+    notesInput.value = todo.notes;
+    attachmentInput.value = todo.attachment;
+    linkInput.value = todo.link;
+
+    li.remove();
+    document.getElementById('addItemForm').addEventListener('submit', () => {
+        const updatedTodo = {
+            text: input.value.trim(),
+            time: timeInput.value,
+            priority: prioritySelect.value,
+            isRepeating: repeatCheckbox.checked,
+            notes: notesInput.value.trim(),
+            attachment: attachmentInput.value.trim(),
+            link: linkInput.value.trim()
+        };
+
+        addTodoToList(updatedTodo);
+        saveTodo(updatedTodo);
     });
-
-    notification.onclick = () => {
-        console.log(`点击了通知: ${message}`);
-    };
 }
 
-// 个性化设置
+// 主题颜色选择
 themeColorSelect.addEventListener('change', function() {
-    const selectedColor = this.value;
-    document.body.style.backgroundColor = getBackgroundColor(selectedColor);
+    document.body.style.backgroundColor = this.value;
 });
 
+// 字体大小选择
 fontSizeSelect.addEventListener('change', function() {
-    const selectedSize = this.value;
-    document.body.style.fontSize = getFontSize(selectedSize);
+    document.body.style.fontSize = this.value;
 });
-
-function getBackgroundColor(color) {
-    switch (color) {
-        case 'blue':
-            return '#e6f7ff';
-        case 'green':
-            return '#e6ffe6';
-        case 'purple':
-            return '#f5e6ff';
-        default:
-            return '#f4f4f9';
-    }
-}
-
-function getFontSize(size) {
-    switch (size) {
-        case 'small':
-            return '12px';
-        case 'medium':
-            return '16px';
-        case 'large':
-            return '20px';
-        default:
-            return '16px';
-    }
-}
