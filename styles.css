@@ -1,42 +1,86 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
-}
-
-.container {
-    width: 50%;
-    margin: 0 auto;
+    margin: 0;
     padding: 20px;
+}
+
+#todoList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#todoList li {
     background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-#currentTime {
-    font-size: 24px;
-    color: #007BFF;
-    margin-bottom: 20px;
-}
-
-input[type="text"], input[type="datetime-local"], select, textarea, input[type="checkbox"] {
-    width: 20%;
-    padding: 10px;
-    margin-right: 10px;
     border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+    position: relative;
+}
+
+#todoList .details-container {
+    display: none;
+    margin-top: 5px;
+}
+
+#todoList .details-container p {
+    margin: 0;
+}
+
+#todoList .details-container a {
+    color: blue;
+    text-decoration: none;
+}
+
+#todoList .details-container a:hover {
+    text-decoration: underline;
+}
+
+#todoList li:hover .details-container {
+    display: block;
+}
+
+#todoList .high-priority {
+    background-color: #ffcccc;
+}
+
+#todoList .medium-priority {
+    background-color: #ffffcc;
+}
+
+#todoList .low-priority {
+    background-color: #ccffcc;
+}
+
+#newItemInput,
+#newItemTime,
+#prioritySelect,
+#repeatCheckbox,
+#notesInput,
+#attachmentInput,
+#linkInput {
+    margin-bottom: 10px;
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;   边框：1px实线#ccc；
     border-radius: 5px;
 }
 
-textarea {
-    width: 45%;
-    padding: 10px;
-    margin-right: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+#newItemInput:focus,
+#newItemTime:focus,
+#prioritySelect:focus,
+#notesInput:focus,
+#attachmentInput:focus,
+#linkInput:focus {
+    outline: none;
+    border-color: blue;
 }
 
 button {
     padding: 10px 20px;
-    background-color: #007BFF;
+    background-color: #4CAF50;
     color: white;
     border: none;
     border-radius: 5px;
@@ -44,51 +88,17 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #45a049;
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
+#currentTime {
+    margin-bottom: 20px;
 }
 
-li {
-    padding: 10px;
-    margin-bottom: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-li.high-priority {
-    background-color: #ffcccc; /* 高优先级背景色 */
-}
-
-li.medium-priority {
-    background-color: #ffffcc; /* 中优先级背景色 */
-}
-
-li.low-priority {
-    background-color: #ccffcc; /* 低优先级背景色 */
-}
-
-li span {
-    margin-left: 10px;
-}
-
-label {
-    margin-right: 10px;
-}
-
-.personalization-settings {
-    margin-top: 20px;
-}
-
-.personalization-settings h2 {
-    font-size: 20px;
-    margin-bottom: 10px;
-}
-
-.personalization-settings label {
-    margin-right: 10px;
+#themeColorSelect,
+#fontSizeSelect {
+    margin-bottom: 20px;
+    padding: 5px;
+    border: 1px solid #ccc;   边框：1px实线#ccc；
+    border-radius: 5px;
 }
