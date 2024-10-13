@@ -1,49 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+<html lang="en">   
+<head>   < >头
+    <meta charset="UTF-8">   <元字符=“UTF-8”>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>待办事项列表</title>
+    <title>待办事项</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <div class="container">
-        <h1>待办事项列表</h1>
-        <div id="currentTime">当前时间将会在这里显示</div>
-        <input type="text" id="newItemInput" placeholder="输入新任务">
+<body>   身体< >
+    <h1>待办事项</h1>
+
+    <div id="currentTime"></div>
+
+    <form id="addItemForm">
+        <input type="text" id="newItemInput" placeholder="输入待办事项">
         <input type="datetime-local" id="newItemTime" placeholder="截止时间">
-        <select id="prioritySelect">
+        <select id="prioritySelect"><选择id = " prioritySelect " >
             <option value="low">低</option>
             <option value="medium">中</option>
             <option value="high">高</option>
-        </select>
-        <label for="repeatCheckbox">重复提醒</label>
-        <input type="checkbox" id="repeatCheckbox">
-        <textarea id="notesInput" rows="2" placeholder="备注"></textarea>
-        <input type="text" id="attachmentInput" placeholder="附件链接">
-        <input type="text" id="linkInput" placeholder="相关链接">
-        <button onclick="addItem()">添加任务</button>
-        <ul id="todoList"></ul>
-        
-        <!-- 新增个性化设置 -->
-        <div class="personalization-settings">
-            <h2>个性化设置</h2>
-            <label for="themeColorSelect">主题颜色:</label>
-            <select id="themeColorSelect">
-                <option value="blue">蓝色</option>
-                <option value="green">绿色</option>
-                <option value="purple">紫色</option>
-            </select>
-            
-            <label for="fontSizeSelect">字体大小:</label>
-            <select id="fontSizeSelect">
-                <option value="small">小</option>
-                <option value="medium">中</option>
-                <option value="large">大</option>
-            </select>
-        </div>
-    </div>
+        </select>   < /选择>
+        <label>
+            <input type="checkbox" id="repeatCheckbox"> 重复提醒
+        </label>
+        <textarea id="notesInput" placeholder="备注"></textarea>
+        <input type="text" id="attachmentInput" placeholder="附件">
+        <input type="text" id="linkInput" placeholder="链接">
+        <button type="submit">添加</button>
+    </form>
 
-    <script src="script.js"></script>
+    <ul id="todoList"></ul>
+
+    <label for="themeColorSelect">主题颜色:</label>
+    <select id="themeColorSelect">
+        <option value="default">默认</option>
+        <option value="blue">蓝色</option>
+        <option value="green">绿色</option>
+        <option value="purple">紫色</option>
+    </select>
+
+    <label for="fontSizeSelect">字体大小:</label>
+    <select id="fontSizeSelect">
+        <option value="default">默认</option>
+        <option value="small">小</option>
+        <option value="medium">中</option>
+        <option value="large">大</option>
+    </select>
+
+    <script src="script.js"></script>< script src = " script.js " > < /脚本>
 </body>
-</html>
+    </html>
