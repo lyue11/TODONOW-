@@ -4,7 +4,7 @@
 
 Manage the information in your life
 
-todo-list-app/
+TODONOW-/
 │
 ├── index.html
 ├── styles.css
