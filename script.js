@@ -3,16 +3,16 @@ const currentTimeDiv = document.getElementById('currentTime');
 const themeColorSelect = document.getElementById('themeColorSelect');
 const fontSizeSelect = document.getElementById('fontSizeSelect');
 
-// 显示当前时间
+// Display current time
 function updateCurrentTime() {
     const now = new Date();
     const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
-    currentTimeDiv.textContent = `当前时间: ${now.toLocaleString('zh-CN', options)}`;
+    currentTimeDiv.textContent = `Current Time: ${now.toLocaleString('en-US', options)}`;
 }
 
-setInterval(updateCurrentTime, 1000); // 每秒更新一次时间
+setInterval(updateCurrentTime, 1000); // Update time every second
 
-// 初始化时从 localStorage 加载数据
+// Load todos from local storage on initialization
 function loadTodos() {
     const todos = JSON.parse(localStorage.getItem('todos')) || [];
     todos.forEach(todo => {
@@ -29,45 +29,45 @@ function addTodoToList(todo) {
     timeSpan.textContent = todo.time;
     li.appendChild(timeSpan);
 
-    // 设置优先级样式
+    // Set priority style
     li.classList.add(`${todo.priority}-priority`);
 
-    // 添加备注、附件和链接
+    // Add notes, attachments, and links
     const detailsContainer = document.createElement('div');
     detailsContainer.classList.add('details-container');
 
     const notesElement = document.createElement('p');
-    notesElement.textContent = `备注: ${todo.notes}`;
+    notesElement.textContent = `Notes: ${todo.notes}`;
     detailsContainer.appendChild(notesElement);
 
     const attachmentElement = document.createElement('p');
-    attachmentElement.textContent = `附件: <a href="${todo.attachment}" target="_blank">${todo.attachment}</a>`;
+    attachmentElement.textContent = `Attachment: <a href="${todo.attachment}" target="_blank">${todo.attachment}</a>`;
     detailsContainer.appendChild(attachmentElement);
 
     const linkElement = document.createElement('p');
-    linkElement.textContent = `链接: <a href="${todo.link}" target="_blank">${todo.link}</a>`;
+    linkElement.textContent = `Link: <a href="${todo.link}" target="_blank">${todo.link}</a>`;
     detailsContainer.appendChild(linkElement);
 
     li.appendChild(detailsContainer);
 
-    // 添加删除按钮
+    // Add delete button
     const deleteButton = document.createElement('button');
-    deleteButton.textContent = '删除';
+    deleteButton.textContent = 'Delete';
     deleteButton.addEventListener('click', () => {
         todoList.removeChild(li);
         removeTodoFromStorage(todo);
     });
     li.appendChild(deleteButton);
 
-    // 添加编辑按钮
+    // Add edit button
     const editButton = document.createElement('button');
-    editButton.textContent = '编辑';
+    editButton.textContent = 'Edit';
     editButton.addEventListener('click', () => {
         editTodo(li, todo);
     });
     li.appendChild(editButton);
 
-    // 添加提醒功能
+    // Set reminders
     const reminderTime = new Date(todo.time);
     const now = new Date();
     if (reminderTime > now) {
@@ -108,7 +108,7 @@ function addItem(event) {
 
     addTodoToList(todo);
 
-    // 保存到 localStorage
+    // Save to local storage
     saveTodo(todo);
 
     input.value = '';
@@ -149,12 +149,12 @@ function setReminder(reminderTime, li, isRepeating) {
 
 function getNextReminderTime(currentTime) {
     const nextTime = new Date(currentTime);
-    nextTime.setDate(nextTime.getDate() + 7); // 假设每周重复
+    nextTime.setDate(nextTime.getDate() + 7); // Assume weekly repetition
     return nextTime;
 }
 
 function showNotification(message, time) {
-    alert(`提醒: ${message} 在 ${time.toLocaleString('zh-CN')}`);
+    alert(`Reminder: ${message} at ${time.toLocaleString('en-US')}`);
 }
 
 function editTodo(li, todo) {
@@ -191,12 +191,12 @@ function editTodo(li, todo) {
     });
 }
 
-// 主题颜色选择
+// Theme color selection
 themeColorSelect.addEventListener('change', function() {
     document.body.style.backgroundColor = this.value;
 });
 
-// 字体大小选择
+// Font size selection
 fontSizeSelect.addEventListener('change', function() {
     document.body.style.fontSize = this.value;
 });
