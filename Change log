@@ -1,0 +1,55 @@
+# Changelog
+
+Change logs for all versions.
+
+[1.3.0] - 2024-10-10
+### Added
+- Added the task priority setting function
+- Added the task classification function
+
+### Fixed
+- Fixed an issue where the task list was sorted incorrectly
+- Fixed an issue where page refresh was not timely after deleting a task
+
+### Improved
+- Optimized task list loading speed
+- Improved user interface responsiveness
+
+[1.2.0] - 2024-9-25
+### Added
+- Added the task completion status marker function
+- Added task reminder function
+
+### Fixed
+- Fixed the incomplete display of the task details page
+- Fixed an issue where task editing failed to save
+
+### Improved
+- Optimized task creation process
+- Improved the accuracy of task search function
+
+[1.1.0] - 2024-09-25
+### Added
+- Added task search function
+- Adds the task filtering function
+
+### Fixed
+- Fixed task list loading failure
+- Fixed an issue where the mission details page style was misaligned
+
+### Improved
+- Optimized the display layout of the task list
+- Improves the aesthetics of the user interface
+
+[1.0.0] - 2023-09-15
+### Added
+- Initial release
+- Implement basic task creation, editing, and deletion functions
+- Add user registration and login functions
+
+### Fixed
+- Fixed several known issues in the initial release
+
+### Improved
+- Optimized user registration and login process
+- Improves overall application stability and performance
